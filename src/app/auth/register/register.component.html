@@ -1,0 +1,20 @@
+<div class="container">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <input type="text" placeholder="Nombre" formControlName="nombre">
+    <input type="text" placeholder="Apellido paterno" formControlName="apellidoP">
+    <input type="text" placeholder="Apellido materno" formControlName="apellidoM">
+    <input type="text" placeholder="Usuario" formControlName="username">
+    <input type="password" placeholder="Contrasena" formControlName="password">
+    <input type="password" placeholder="Confirmar contrasena" formControlName="confirmPassword">
+
+    @if (errorMessage) {
+      <p class="error">{{ errorMessage }}</p>
+    }
+
+    <button type="submit" [disabled]="registerForm.invalid || isLoading">
+      {{ isLoading ? 'Registrando...' : 'Registrarse' }}
+    </button>
+
+    <a routerLink="/auth/login">Ya tengo cuenta</a>
+  </form>
+</div>

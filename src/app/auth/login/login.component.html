@@ -1,0 +1,16 @@
+<div class="container">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <input type="text" placeholder="Usuario" formControlName="username">
+    <input type="password" placeholder="Contrasena" formControlName="password">
+
+    @if (errorMessage) {
+      <p class="error">{{ errorMessage }}</p>
+    }
+
+    <button type="submit" [disabled]="loginForm.invalid || isLoading">
+      {{ isLoading ? 'Ingresando...' : 'Ingresar' }}
+    </button>
+
+    <a routerLink="/auth/register">Crear cuenta</a>
+  </form>
+</div>
