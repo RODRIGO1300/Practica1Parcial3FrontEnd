@@ -1,0 +1,11 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #f8f8f8;
+  color: #141414;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.app-shell {
+  min-height: calc(100vh - 67px);
+}

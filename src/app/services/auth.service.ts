@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import {
   LoginUsuarioRequest,
   RegistroUsuarioRequest,
@@ -21,6 +21,7 @@ export class AuthService {
   private readonly apiUrl = environment.BASE_URL + 'auth/';
   private readonly usuariosUrl = environment.BASE_URL + 'usuarios/';
   private readonly tokenKey = 'token';
+  public readonly isAuthenticated = signal(this.hasToken());
 
   login(objeto: LoginUsuarioRequest): Observable<ApiResponse<LoginResponse>> {
     return this.http
@@ -40,6 +41,7 @@ export class AuthService {
     }
 
     localStorage.setItem(this.tokenKey, token);
+    this.isAuthenticated.set(true);
   }
 
   hasToken(): boolean {
@@ -56,6 +58,7 @@ export class AuthService {
     }
 
     localStorage.removeItem(this.tokenKey);
+    this.isAuthenticated.set(false);
   }
 
   private canUseLocalStorage(): boolean {

@@ -1,0 +1,30 @@
+<header class="navbar">
+  <div class="navbar__brand" aria-label="CafeTecApp">
+    <span class="navbar__logo">C</span>
+    <span>CafeTecApp</span>
+  </div>
+
+  <nav class="navbar__links" aria-label="Navegacion principal">
+    @if (isLoggedIn()) {
+      <button class="navbar__button" type="button" (click)="logout()">
+        Cerrar Sesion
+      </button>
+    } @else {
+      <a
+        routerLink="/auth/login"
+        routerLinkActive="navbar__link--active"
+        class="navbar__link"
+      >
+        Inicio
+      </a>
+
+      <a
+        routerLink="/auth/register"
+        routerLinkActive="navbar__link--active"
+        class="navbar__link"
+      >
+        Registro
+      </a>
+    }
+  </nav>
+</header>
